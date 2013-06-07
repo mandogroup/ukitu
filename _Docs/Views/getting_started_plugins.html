@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html class="ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie8 oldie" lang="en"> <![endif]-->
+<!--[if IE 9 ]>    <html class="ie9" lang="en"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html lang="en">
+<!--<![endif]-->
+		<head>
+
+		<meta charset="utf-8">
+		<title>Mando Mobile | Getting Started - Plugins</title>
+
+	</head>
+
+	<body>
+		
+		<div data-view="getting_started_plugins">
+			
+			<div data-view-inner>
+				
+				<div class="section w100">
+				
+					<h2>Working with Plugins</h2>
+					
+					<p>A small set of touch optimised plugins have been provided for you similar to those you might find in jQuery mobile. The key difference is that these plugins have been written with KnockoutJS; as this has become our preferred MVVM framework for applications, and touch in mind. This means that the UI elements should not have to be manually prompted to update and should react and respond as you would expect standard browser UI elements to.</p>
+                    <p>Two categories of plugins are utilised in the framework; 'Core' Plugins and 'Optional' Plugins (which can be added to if you wish) but none are strictly framework dependent so feel free to use them on other non MandoMobile projects.</p>
+                    
+                    <ul>
+                        <li><strong>'Core' Plugins</strong>: These are plugins which are automatically added to the MandoMobile a small subset which would be considered common enough to be always available, see the <a href="#">Plugins</a> section for more details.</li>
+                        <li><strong>'Optional' Plugins</strong>: These are plugins which are not included by default in the MandoMobile load stack. For your convinience the <strong>'MandoMobile-config.js'</strong> file includes all of these that you can remove or comment out as necessary, just be aware that ommitting them from the options (discussed in the <a href="#">Advanced</a> section) would eliminate the preload of that Plugin. See the <a href="#">Plugins</a> section for more details.</li>
+                    </ul>
+
+                    <h3>Implementing Plugins</h3>
+
+                    <p>Plugins are implemented in one of two ways depending on your configuration setup as defined by the <strong>'MandoMobile-config.js'</strong> file, the use of this file is outlined in the <a href="#">Advanced</a> section but for now we will concentrate on the default config options and specifically toggling the automatic initilisation off, what that means and how to use it.</p>
+
+                    <p>Lets have a look at a simple set of radio buttons and see how to implement a stylable radio toggle switch.</p>
+
+                    <h4>So this:</h4>
+
+<pre class="html"><code>
+&lt;div data-radio-toggle&gt;
+	
+	&lt;label for=&quot;radio1&quot;&gt;Value 1&lt;/label&gt;
+	&lt;input id=&quot;radio1&quot; type=&quot;radio&quot; name=&quot;group&quot; value=&quot;1&quot; /&gt;
+	&lt;label for=&quot;radio2&quot;&gt;Value 2&lt;/label&gt;
+	&lt;input id=&quot;radio2&quot; type=&quot;radio&quot; name=&quot;group&quot; value=&quot;2&quot; /&gt;
+	&lt;label for=&quot;radio3&quot;&gt;Value 3&lt;/label&gt;
+	&lt;input id=&quot;radio3&quot; type=&quot;radio&quot; name=&quot;group&quot; value=&quot;3&quot; /&gt;
+	
+&lt;/div&gt;
+</code></pre>
+				
+                    <h4>Would give you this:</h4>
+
+				    <div data-radio-toggle>
+	
+	                    <label for="gs_radio1">Value 1</label>
+	                    <input id="gs_radio1" type="radio" name="gs_group" value="1" />
+	                    <label for="gs_radio2">Value 2</label>
+	                    <input id="gs_radio2" type="radio" name="gs_group" value="2" />
+	                    <label for="gs_radio3">Value 3</label>
+	                    <input id="gs_radio3" type="radio" name="gs_group" value="3" />
+	
+                    </div>
+
+                    <h4>Which Means...</h4>
+
+                    <p>By simply adding the correct markup, specifically focusing on the 'data-radio-toggle' wrapper in this instance, if the <a href="#">'autoInitPlugins'</a> option in <strong>'MandoMobile-config.js'</strong> is set to true (which by default it is), the framework will attempt to build this control automatically upon page render.</p>
+                    <p>A full reference with working examples can be found in the <a href="#">Plugins</a> section which outlines each plugin and its usage, this is used a simple example.</p>
+
+                    <h3>Implementing a Plugin Manually</h3>
+
+                    <p>Whilst this method is quick and easy, in some more complicated applications you may wish to instantiate this plugin manually, this way you are able to retain local reference to the plugin, have more flexibility over options and be able to influence its behavior using JavaScript. The use for this is more common when dealing with presentational plugins as these can be more complex.</p>
+				
+                    <p>So with the <a href="#">'autoInitPlugins'</a> option set to <strong>false</strong>, the same markup is required but you would need to manually instantiate it in your JavaScript for this view. A simple function has been created for you to do this:</p>
+
+<pre class="js"><code>
+<span class="num">1</span><strong>mm.plugins.activatePlugin</strong>(<span class="num">2</span>'RadioToggle', <span class="num">3</span>[$('[data-radio-toggle]']), {
+    // Plugin Options
+}]);
+
+// Alternatively
+mm.plugins.activatePlugin(<span class="num">4</span>{ name: 'RadioToggle', src: <i>'/path/to/plugin.js'</i> }, [$('[data-radio-toggle]']), {
+    // Plugin Options
+}]);
+
+</code></pre>
+
+				    <ul class="markup_list">
+					
+						<li><span class="num">1</span> <strong>The 'activatePlugin' function call:</strong> .</li>
+						<li><span class="num">2</span> <strong>The 'plugin' parameter (String):</strong> .</li>
+                        <li><span class="num">3</span> <strong>The 'pluginParams' parameter:</strong> .</li>
+                        <li><span class="num">3</span> <strong>The 'plugin' parameter (Object):</strong> .</li>
+				
+					</ul>
+				
+                    <div class="nav_block">
+					
+						<p><strong>.</strong></p>
+						
+						<a href="#" data-url="/_docs/views/"></a>
+
+					</div>
+
+				</div>
+				
+			</div>
+			
+		</div>
+		
+	</body>
+
+</html>
