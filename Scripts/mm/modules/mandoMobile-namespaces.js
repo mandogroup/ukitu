@@ -111,7 +111,7 @@
 
         css3: {
             
-            getTransEndEventName: function () {
+            getTransitionEnd: function () {
 
                 var transitionEnd = window.mm.utils.css3.getPrefix('transition');
 
