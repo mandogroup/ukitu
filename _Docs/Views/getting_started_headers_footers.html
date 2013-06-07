@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html class="ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie8 oldie" lang="en"> <![endif]-->
+<!--[if IE 9 ]>    <html class="ie9" lang="en"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html lang="en">
+<!--<![endif]-->
+	<head>
+
+		<meta charset="utf-8">
+		<title>Mando Mobile | Getting Started - Headers and Footers</title>
+
+	</head>
+
+	<body>
+		
+		<div data-view="getting_started_headers_footers">
+			
+			<div data-view-inner>
+				
+				<div class="section w100">
+				
+					<h2>Working with Headers and Footers</h2>
+					
+					<h3>Using Static Headers and Footers</h3>
+					
+					<p>Static headers are static in the sense that they will remain in place at the head of the page whilst views transition in and out independently from them. This way header / footer content can persist and does not need to be repeated over and over.</p>
+				
+					<h3>Implementing a Static Header and Footer</h3>
+					
+					<p>Using this very simple set of markup, a simple static header and footer can be created:</p>
+					
+<pre class="html"><code>
+<span class="sub">&lt;body&gt;</span>
+
+<span class="num">1</span>	&lt;div <strong>data-header</strong>&gt;
+	
+	&lt;/div&gt;
+	
+	<span class="sub">&lt;div data-view=&quot;view_id&quot;&gt;</strong>
+				
+		&lt;div data-view-inner&gt;
+						
+		&lt;/div&gt;
+		
+	&lt;/div&gt;</span>
+	
+<span class="num">2</span>	&lt;div <strong>data-footer</strong>&gt;
+	
+	&lt;/div&gt;
+	
+<span class="sub">&lt;body/&gt;</span>
+</code></pre>
+				
+					<ul class="markup_list">
+					
+						<li><span class="num">1</span> <strong>The 'data-header' attribute:</strong> This attribute will define the '&lt;div&gt;' element as the header and everything inside it will remain during view transitions.<br/><strong>NOTE:</strong> Only if your view has this element referenced on the landing / application start page will it appear in your application.</li>
+						<li><span class="num">2</span> <strong>The 'data-footer' attribute:</strong> This attribute will define the '&lt;div&gt;' element as the footer and everything inside it will remain during view transitions.<br/><strong>NOTE:</strong> Only if your view has this element referenced on the landing / application start page will it appear in your application.</li>
+				
+					</ul>
+					
+					<p><strong>NOTE:</strong> A page can have a header, a footer, both or neither. It depends entirely on your application, the framework will handle measurements correctly taking into account the headers and footers into its view height calculations.</p>
+									
+					<div class="nav_block">
+					
+						<p><strong>Now that you understand how to use headers and footers, lets take a look at the final layout element; the Slide Navigation element.</strong></p>
+						
+						<a href="#getting_started_slide_nav" data-url="/_docs/views/getting_started_slide_nav.html">Using the Slide Navigation element</a>
+
+					</div>
+					
+				</div>
+					
+			</div>
+			
+		</div>
+		
+	</body>
+
+</html>

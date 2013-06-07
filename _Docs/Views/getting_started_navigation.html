@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html class="ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie8 oldie" lang="en"> <![endif]-->
+<!--[if IE 9 ]>    <html class="ie9" lang="en"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html lang="en">
+<!--<![endif]-->
+	<head>
+
+		<meta charset="utf-8">
+		<title>Mando Mobile | Getting Started - Navigation</title>
+
+	</head>
+
+	<body>
+		
+		<div data-view="getting_started_navigation">
+			
+			<div data-view-inner>
+				
+				<div class="section w100">
+				
+					<h2>Navigating Around</h2>
+						
+					<p>Navigating around your application project is easy, navigation can either be invoked by a simple addition to your '&lt;a&gt;' tags or via a simple call to the framework API in Javascript. The framework itself will take care of loading and managing the navigation structure complete with transitions.</p>
+					<p><strong>NOTE:</strong> There is only currently only one page transition used in the framework, a slide of the existing page over to the left. New transitions will be added in time but do check the <a href="#todo" data-url="/_docs/views/todo.html">TODO</a> list for details of intended future improvements.</p>
+					
+					<h3>Changing the Page with the &lt;a&gt; Tag</h3>
+<pre class="html"><code>
+&lt;a <span class="num">1</span><strong>href="#view_id"</strong> <span class="num">2</span><strong>data-url="/_docs/views/view_url.html"</strong> <span class="num">3</span><strong>data-transition="fade"</strong>&gt;An Example Link&lt;/a&gt;
+</code></pre>
+					
+					<ul class="markup_list">
+					
+						<li><span class="num">1</span> <strong>The 'href' attribute:</strong> The value must match the related page's 'data-view' value preceded by a hash. This allows the application to hook into the browser 'hashchange' event and use the value as the viewId to recall the view in the application.</li>
+						<li><span class="num">2</span> <strong>The 'data-url' attribute:</strong> This value is essential to define the actual location of your view on the server. This can be omitted when using the 'View Directory' feature. For more information see the <a href="#advanced" data-url="/_docs/views/advanced.html">Advanced</a> section.</li>
+						<li><span class="num">3</span> <strong>The 'data-transition' attribute:</strong> This value is optional and to defines a the transition in which the page change should use. If this is ommitted the view change will use a standard sliding animation from right to left (see 'Transitions' below). </li>
+					
+					</ul>
+					
+					<h3>Changing the Page with Javascript</h3>
+<pre class="js"><code>
+<span class="num">3</span><strong>mm.views.changeView</strong>(<span class="num">4</span><strong>'viewId'</strong>, <span class="num">5</span><strong>'viewUrl.html'</strong>, <span class="num">6</span><strong>'fade'</strong>);
+</code></pre>
+					
+					<ul class="markup_list">
+					
+						<li><span class="num">3</span> <strong>The 'changeView' function call:</strong> This function sits within the 'views' namespace and can be called globally once the framework has been instantiated.</li>
+						<li><span class="num">4</span> <strong>The 'viewId' parameter:</strong> The value must match the related page's 'data-view' value preceded by a hash. This allows the application to hook into the browser 'hashchange' event and use the value as the viewId to recall the view in the application.</li>
+						<li><span class="num">5</span> <strong>The 'viewUrl' parameter:</strong> This value is essential to define the actual location of your view on the server. This can be omitted when using the 'View Directory' feature. For more information see the <a href="#advanced" data-url="/_docs/views/advanced.html">Advanced</a> section.</li>
+						<li><span class="num">6</span> <strong>The 'viewTransition' parameter:</strong> Similar to the 'data-transition' attribute described above, this is an optional parameter which describes the transition you wish to use for that page change.</li>
+						
+					</ul>
+					
+					<h3>Transitions</h3>
+					
+					<p>Only two page transitions are currently available in the framework with more on the way in subsequent versions, these transitions are:</p>
+					
+					<ol>
+					
+						<li><strong>'swipe':</strong> Using the string identifier 'swipe' you are able to make the current view fade swipe left across the new view.</li>
+						<li><strong>'fade':</strong> Using the string identifier 'fade' you are able to make the current view fade out above the new view.</li>
+					
+					</ol>
+					
+					<p><strong>NOTE:</strong> If no transition is specified, the default 'swipe' transition will be used.</p>
+					
+					<div class="nav_block">
+					
+						<p><strong>Now you can get around your application, lets take a look at using headers and footers.</strong></p>
+					
+						<a href="#getting_started_headers_footers" data-url="/_docs/views/getting_started_headers_footers.html">Working with Headers and Footers</a>
+						
+					</div>
+				
+				</div>
+				
+			</div>
+			
+		</div>
+		
+	</body>
+
+</html>

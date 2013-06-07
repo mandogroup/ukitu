@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html class="ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie8 oldie" lang="en"> <![endif]-->
+<!--[if IE 9 ]>    <html class="ie9" lang="en"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html lang="en">
+<!--<![endif]-->
+	<head>
+
+		<meta charset="utf-8">
+		<title>Mando Mobile | Getting Started - View Setup</title>
+
+	</head>
+
+	<body>
+		
+		<div data-view="getting_started_view_setup">
+			
+			<div data-view-inner>
+				
+				<div class="section w100">
+
+					<h2>Setting up your View</h2>
+			
+					<h3>Anatomy of a Basic View</h3>
+					
+					<p>Views in the framework differ very little to a standard webpage, just a few extras here and there and you have a view which is compatible with the framework.</p>
+					<p>The framework is designed to load each page dynamtically copying elements of the html from each page into the DOM, this allows for seamless transitions and retention of JavaScript memory and application state.</p>
+					<p>Lets start with the basic layout of a view, static headers and footers can feature in the application but this is discussed later in the <a href="#getting_started_headers_footers" data-url="/_docs/views/getting_started_headers_footers.html">Working with Headers and Footers</a> section.
+
+<pre class="html"><code>
+<strong>&lt;!DOCTYPE html&gt;</strong>
+&lt;html lang=&quot;en&quot;&gt;
+	&lt;head&gt;
+		&lt;meta charset=&quot;utf-8&quot;&gt;
+<span class="num">1</span>		<strong>&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0, maximum-scale=1.0&quot;&gt;</strong>
+		<strong>&lt;meta name=&quot;apple-mobile-web-app-capable&quot; content=&quot;yes&quot; /&gt;</strong>
+		
+<span class="num">2</span>		<strong>&lt;title&gt;Mando Mobile | View Name&lt;/title&gt;</strong>
+		
+<span class="num">3</span>		<strong>&lt;link rel=&quot;icon&quot; href=&quot;/Images/favicon.ico&quot; type=&quot;image/x-icon&quot; /&gt;
+		&lt;link rel=&quot;apple-touch-icon&quot; href=&quot;/Images/ios-icon-57x57.png&quot; /&gt;
+		&lt;link rel=&quot;apple-touch-icon&quot; sizes=&quot;72x72&quot; href=&quot;/Images/ios-icon-72x72.png&quot; /&gt;
+		&lt;link rel=&quot;apple-touch-icon&quot; sizes=&quot;114x114&quot; href=&quot;/Images/ios-icon-144x144.png&quot; /&gt;</strong>
+		
+<span class="num">4</span>		<strong>&lt;link type=&quot;text/css&quot; rel=&quot;stylesheet&quot; href=&quot;/styles/mandoMobile.css&quot; /&gt;</strong>
+		&lt;link type=&quot;text/css&quot; rel=&quot;stylesheet&quot; href=&quot;/styles/screen.css&quot; /&gt;
+		
+		&lt;!-- jQuery --&gt;
+<span class="num">5</span>		<strong>&lt;script type=&quot;text/javascript&quot; src=&quot;/scripts/jquery-1.8.2.min.js&quot;&gt;&lt;/script&gt;
+		&lt;script type=&quot;text/javascript&quot; src=&quot;/scripts/jquery.ba-hashchange.js&quot;&gt;&lt;/script&gt;</strong>
+
+		&lt;!-- Modernizr --&gt;
+<span class="num">6</span>		<strong>&lt;script type=&quot;text/javascript&quot; src=&quot;/scripts/modernizr.js&quot;&gt;&lt;/script&gt;</strong>
+
+		&lt;!-- MandoMobile Platform --&gt;
+<span class="num">7</span>		<strong>&lt;script type=&quot;text/javascript&quot; src=&quot;/scripts/mm/mandoMobile.js&quot;&gt;&lt;/script&gt;
+		&lt;script type=&quot;text/javascript&quot; src=&quot;/scripts/mm/mandoMobile-config.js&quot;&gt;&lt;/script&gt;</strong>
+
+	&lt;/head&gt;
+
+	&lt;body&gt;
+		
+<span class="num">8</span>		<strong>&lt;div data-view=&quot;view_id&quot;&gt;</strong>
+			
+<span class="num">9</span>			<strong>&lt;div data-view-inner&gt;</strong>
+				
+			&lt;/div&gt;
+			
+		&lt;/div&gt;
+		
+	&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+
+<!-- jQuery -->
+		<script src="/Scripts/jquery-1.8.2.min.js"></script>
+		<script src="/Scripts/jquery.ba-hashchange.js"></script>
+
+        <!-- Modernizr -->
+        <script src="/Scripts/modernizr.js"></script>
+
+		<!-- MandoMobile Platform -->
+		<script src="/Scripts/mm/mandoMobile.js"></script>
+		<script src="/_Docs/Scripts/mm/mandoMobile-config.js"></script>
+
+
+				
+					<ul class="markup_list">
+					
+						<li><span class="num">1</span> <strong>Meta tags:</strong> These Meta tags are required to ensure scale remains constant on mobile devices, this will have no effect on desktop representations.</li>
+						<li><span class="num">2</span> <strong>Title:</strong> Nothing special here really, but note that this title is used by the framework to change the window's title as it asyncronously downloads each page in your application.</li>
+						<li><span class="num">3</span> <strong>Apple / Favicons:</strong> Not essential but you should supply some icons for the browser and iOS homescreen.</li>
+						<li><span class="num">4</span> <strong>MandoMobile framework Stylesheet:</strong> The Absolute necessary styles are applied via JavaScript in the application, but it is strongly adviced you include this very small StyleSheet in your application as it provides some default structure to the very basic elements used by the framework and its plugins.</li>
+						<li><span class="num">5</span> <strong>jQuery 1.8.2 Library:</strong> The framework is currently dependant on jQuery version 1.8.2 as its base library. Also note the jQuery hashchange.js, this is required for IE7 as the hashchange event was not introduced until IE8.<br/><strong>NOTE:</strong> Due to the use of '.live' the framework is not compatible with jQuery 1.9 for the moment.</li>
+						<li><span class="num">6</span> <strong>Modernizr:</strong> The framework uses Modernizr to optimise feature detection for modules and plugins.</li>
+						<li><span class="num">7</span> <strong>MandoMobile framework JavaScript:</strong> This file calls in all the necessary files and provides the initial loading interface for the framework. This is where all the magic happens!</li>
+						<li><span class="num">8</span> <strong>The 'data-view' attribute:</strong> This is the first mandatory attribute required for each view, this defines the area which contains the core view markup and states to the application which markup segment it should inject into the DOM.<br/><strong>NOTE:</strong> This attribute has a value, this value is used by the application to identify the view's ID, without it the application navigation will not function correctly.</li>
+						<li><span class="num">9</span> <strong>The 'data-view-inner' attribute:</strong> A child '&lt;div&gt;' must be set inside the 'data-view' element named 'data-view-inner'. This is important for the application to calculate view heights correctly. It is essential that ALL of your markup sits as children inside this element.</li>
+				
+					</ul>
+					
+					<div class="nav_block">				
+	
+						<p><strong>So now you have the markup ready, lets take a look at getting around the application.</strong></p>					
+						<a href="#getting_started_navigation" data-url="/_docs/views/getting_started_navigation.html">Navigating Around</a>
+						
+					</div>
+				
+				</div>
+				
+			</div>
+			
+		</div>
+		
+	</body>
+
+</html>

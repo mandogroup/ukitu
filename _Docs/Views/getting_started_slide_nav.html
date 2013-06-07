@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html class="ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie8 oldie" lang="en"> <![endif]-->
+<!--[if IE 9 ]>    <html class="ie9" lang="en"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html lang="en">
+<!--<![endif]-->
+	<head>
+
+		<meta charset="utf-8">
+		<title>Mando Mobile | Getting Started - Headers and Footers</title>
+
+	</head>
+
+	<body>
+		
+		<div data-view="getting_started_slide_nav">
+			
+			<div data-view-inner>
+				
+				<div class="section w100">
+				
+					<h2>Using the Slide Navigation Element</h2>
+
+                    <h3>Why have Slide Navigation?</h3>
+					
+					<p>Navigation can be a problem on a mobile platform, page real estate is limited so a means to display the navigation without encroaching on the content has been created for you using the Slide Navigation element. The visibility of the navigation panel can be toggled using swipe gestures in addition to any reference you provide to an element to act as the activator.</p>
+					
+                    <h3>Implementing Slide Navigation</h3>
+
+                    <p>Since this sits outside the view markup, similar to headers and footers this becomes a global element, look at the example below for correct placement. Any markup can be added to the element and with a little work the <a href="#">ScrollBox</a> plugin can be used in conjunction with the Slide Navigation to help with a large navigation structure.<br /><strong>NOTE:</strong> The 'data-header' element is used here to demonstrate a global container for the activator, this is just and example it can be placed elsewhere if you wish.</p>
+
+<pre class="html"><code>
+<span class="sub">&lt;body&gt;</span>
+
+<span class="num">1</span>	&lt;div <strong>data-slide-nav</strong>&gt;
+	
+	&lt;/div&gt;
+	
+	&lt;div <strong>data-header</strong>&gt;
+	
+<span class="num">2</span>		&lt;button data-slide-nav-activator&gt;Navigation&lt;/button&gt;
+	
+	&lt;/div&gt;	
+	
+	<span class="sub">&lt;div data-view=&quot;view_id&quot;&gt;</strong>
+				
+		&lt;div data-view-inner&gt;
+						
+		&lt;/div&gt;
+		
+	&lt;/div&gt;</span>
+	
+<span class="sub">&lt;body/&gt;</span>
+</code></pre>
+				
+					<ul class="markup_list">
+					
+						<li><span class="num">1</span> <strong>The 'data-slide-nav' attribute:</strong> This attribute will define the '&lt;div&gt;' element as the Slide Navigation container. This element is hidden by default but can be accessed by using the activator (see below) which will toggle the Slide Navigation state on and off. As with the header and footer elements, this should sit outside of the 'data-view' element as it is a global feature, not specific to any given view.<br/><strong>NOTE:</strong> Only if your view has this element referenced on the landing / application start page will it appear in your application.</li>
+				
+					</ul>
+						
+					<div class="nav_block">
+					
+						<p><strong>Now that you understand how to structure a basic view set, lets take a look at using some of the framework's tooling and plugins.</strong></p>
+						
+						<a href="#getting_started_plugins" data-url="/_docs/views/getting_started_plugins.html">Working with Plugins</a>
+
+					</div>
+				
+				</div>
+				
+			</div>
+			
+		</div>
+		
+	</body>
+
+</html>

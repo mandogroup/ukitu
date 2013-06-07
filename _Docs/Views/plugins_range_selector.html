@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html class="ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie8 oldie" lang="en"> <![endif]-->
+<!--[if IE 9 ]>    <html class="ie9" lang="en"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html lang="en">
+<!--<![endif]-->
+	<head>
+
+		<meta charset="utf-8">
+		<title>Mando Mobile | Plugins - Range Selector</title>
+
+	</head>
+
+	<body>
+		
+		<div data-view="plugins_range_selector">
+			
+			<div data-view-inner>
+				
+                <div class="section w100">
+
+                    <h2>Range Selector Plugin</h2>
+
+                    <h3>Examples</h3>
+				
+				    <div class="section w50">
+
+                        <h4>Min-Max Range</h4>
+				
+				        <div data-range-selector>
+					        <fieldset data-range-fields>
+						        <legend>Retirement Age</legend>
+						        <ol>
+							        <li>
+								        <label for="min">Min:</label>
+								        <input type="number" id="min" data-min-range />
+							        </li>
+							        <li>
+								        <label for="max">Max:</label>
+								        <input type="number" id="max" data-max-range />
+							        </li>
+						        </ol>
+					        </fieldset>
+				        </div>
+
+                    </div>
+
+                    <div class="section w50">
+				
+				        <h4>Max Range Only</h4>
+				
+				        <div data-range-selector>
+					        <div data-range-fields>
+						        <legend>Retirement Age</legend>
+						        <ol>
+							        <li>
+								        <label for="max">Max:</label>
+								        <input type="number" id="max" data-max-range />
+							        </li>
+						        </ol>
+					        </div>
+				        </div>
+
+                    </div>
+
+                    <div class="section w100">
+                
+<pre><code>
+&lt;div data-range-selector&gt;
+
+	&lt;div data-range-fields&gt;
+	
+		&lt;legend&gt;Retirement Age&lt;/legend&gt;
+		&lt;ol&gt;
+			&lt;li&gt;
+				&lt;label for=&quot;min&quot;&gt;Min:&lt;/label&gt;
+				&lt;input type=&quot;number&quot; id=&quot;Number1&quot; data-min-range /&gt;
+			&lt;/li&gt;
+			&lt;li&gt;
+				&lt;label for=&quot;max&quot;&gt;Max:&lt;/label&gt;
+				&lt;input type=&quot;number&quot; id=&quot;Number2&quot; data-max-range /&gt;
+			&lt;/li&gt;
+		&lt;/ol&gt;
+		
+	&lt;/div&gt;
+	
+&lt;/div&gt;
+</code></pre> 
+
+                    </div>
+
+                </div>
+				
+			</div>
+			
+		</div>
+		
+	</body>
+
+</html>
