@@ -9,7 +9,7 @@
 	<head>
 
 		<meta charset="utf-8">
-		<title>Mando Mobile | Getting Started - View Setup</title>
+		<title>Ukitu | Getting Started - View Setup</title>
 
 	</head>
 
@@ -37,14 +37,14 @@
 <span class="num">1</span>		<strong>&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0, maximum-scale=1.0&quot;&gt;</strong>
 		<strong>&lt;meta name=&quot;apple-mobile-web-app-capable&quot; content=&quot;yes&quot; /&gt;</strong>
 		
-<span class="num">2</span>		<strong>&lt;title&gt;Mando Mobile | View Name&lt;/title&gt;</strong>
+<span class="num">2</span>		<strong>&lt;title&gt;Ukitu | View Name&lt;/title&gt;</strong>
 		
 <span class="num">3</span>		<strong>&lt;link rel=&quot;icon&quot; href=&quot;/Images/favicon.ico&quot; type=&quot;image/x-icon&quot; /&gt;
 		&lt;link rel=&quot;apple-touch-icon&quot; href=&quot;/Images/ios-icon-57x57.png&quot; /&gt;
 		&lt;link rel=&quot;apple-touch-icon&quot; sizes=&quot;72x72&quot; href=&quot;/Images/ios-icon-72x72.png&quot; /&gt;
 		&lt;link rel=&quot;apple-touch-icon&quot; sizes=&quot;114x114&quot; href=&quot;/Images/ios-icon-144x144.png&quot; /&gt;</strong>
 		
-<span class="num">4</span>		<strong>&lt;link type=&quot;text/css&quot; rel=&quot;stylesheet&quot; href=&quot;/styles/mandoMobile.css&quot; /&gt;</strong>
+<span class="num">4</span>		<strong>&lt;link type=&quot;text/css&quot; rel=&quot;stylesheet&quot; href=&quot;/styles/ukitu.css&quot; /&gt;</strong>
 		&lt;link type=&quot;text/css&quot; rel=&quot;stylesheet&quot; href=&quot;/styles/screen.css&quot; /&gt;
 		
 		&lt;!-- jQuery --&gt;
@@ -54,9 +54,9 @@
 		&lt;!-- Modernizr --&gt;
 <span class="num">6</span>		<strong>&lt;script type=&quot;text/javascript&quot; src=&quot;/scripts/modernizr.js&quot;&gt;&lt;/script&gt;</strong>
 
-		&lt;!-- MandoMobile Platform --&gt;
-<span class="num">7</span>		<strong>&lt;script type=&quot;text/javascript&quot; src=&quot;/scripts/mm/mandoMobile.js&quot;&gt;&lt;/script&gt;
-		&lt;script type=&quot;text/javascript&quot; src=&quot;/scripts/mm/mandoMobile-config.js&quot;&gt;&lt;/script&gt;</strong>
+		&lt;!-- Ukitu Platform --&gt;
+<span class="num">7</span>		<strong>&lt;script type=&quot;text/javascript&quot; src=&quot;/scripts/uk/ukitu.js&quot;&gt;&lt;/script&gt;
+		&lt;script type=&quot;text/javascript&quot; src=&quot;/scripts/uk/ukitu-config.js&quot;&gt;&lt;/script&gt;</strong>
 
 	&lt;/head&gt;
 
@@ -82,9 +82,9 @@
         <!-- Modernizr -->
         <script src="/Scripts/modernizr.js"></script>
 
-		<!-- MandoMobile Platform -->
-		<script src="/Scripts/mm/mandoMobile.js"></script>
-		<script src="/_Docs/Scripts/mm/mandoMobile-config.js"></script>
+		<!-- Ukitu Platform -->
+		<script src="/Scripts/uk/ukitu.js"></script>
+		<script src="/_Docs/Scripts/uk/ukitu-config.js"></script>
 
 
 				
@@ -93,10 +93,10 @@
 						<li><span class="num">1</span> <strong>Meta tags:</strong> These Meta tags are required to ensure scale remains constant on mobile devices, this will have no effect on desktop representations.</li>
 						<li><span class="num">2</span> <strong>Title:</strong> Nothing special here really, but note that this title is used by the framework to change the window's title as it asyncronously downloads each page in your application.</li>
 						<li><span class="num">3</span> <strong>Apple / Favicons:</strong> Not essential but you should supply some icons for the browser and iOS homescreen.</li>
-						<li><span class="num">4</span> <strong>MandoMobile framework Stylesheet:</strong> The Absolute necessary styles are applied via JavaScript in the application, but it is strongly adviced you include this very small StyleSheet in your application as it provides some default structure to the very basic elements used by the framework and its plugins.</li>
+						<li><span class="num">4</span> <strong>Ukitu framework Stylesheet:</strong> The Absolute necessary styles are applied via JavaScript in the application, but it is strongly adviced you include this very small StyleSheet in your application as it provides some default structure to the very basic elements used by the framework and its plugins.</li>
 						<li><span class="num">5</span> <strong>jQuery 1.8.2 Library:</strong> The framework is currently dependant on jQuery version 1.8.2 as its base library. Also note the jQuery hashchange.js, this is required for IE7 as the hashchange event was not introduced until IE8.<br/><strong>NOTE:</strong> Due to the use of '.live' the framework is not compatible with jQuery 1.9 for the moment.</li>
 						<li><span class="num">6</span> <strong>Modernizr:</strong> The framework uses Modernizr to optimise feature detection for modules and plugins.</li>
-						<li><span class="num">7</span> <strong>MandoMobile framework JavaScript:</strong> This file calls in all the necessary files and provides the initial loading interface for the framework. This is where all the magic happens!</li>
+						<li><span class="num">7</span> <strong>Ukitu framework JavaScript:</strong> This file calls in all the necessary files and provides the initial loading interface for the framework. This is where all the magic happens!</li>
 						<li><span class="num">8</span> <strong>The 'data-view' attribute:</strong> This is the first mandatory attribute required for each view, this defines the area which contains the core view markup and states to the application which markup segment it should inject into the DOM.<br/><strong>NOTE:</strong> This attribute has a value, this value is used by the application to identify the view's ID, without it the application navigation will not function correctly.</li>
 						<li><span class="num">9</span> <strong>The 'data-view-inner' attribute:</strong> A child '&lt;div&gt;' must be set inside the 'data-view' element named 'data-view-inner'. This is important for the application to calculate view heights correctly. It is essential that ALL of your markup sits as children inside this element.</li>
 				

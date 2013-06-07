@@ -9,7 +9,7 @@
 		<head>
 
 		<meta charset="utf-8">
-		<title>Mando Mobile | Getting Started - Plugins</title>
+		<title>Ukitu | Getting Started - Plugins</title>
 
 	</head>
 
@@ -24,16 +24,16 @@
 					<h2>Working with Plugins</h2>
 					
 					<p>A small set of touch optimised plugins have been provided for you similar to those you might find in jQuery mobile. The key difference is that these plugins have been written with KnockoutJS; as this has become our preferred MVVM framework for applications, and touch in mind. This means that the UI elements should not have to be manually prompted to update and should react and respond as you would expect standard browser UI elements to.</p>
-                    <p>Two categories of plugins are utilised in the framework; 'Core' Plugins and 'Optional' Plugins (which can be added to if you wish) but none are strictly framework dependent so feel free to use them on other non MandoMobile projects.</p>
+                    <p>Two categories of plugins are utilised in the framework; 'Core' Plugins and 'Optional' Plugins (which can be added to if you wish) but none are strictly framework dependent so feel free to use them on other non Ukitu projects.</p>
                     
                     <ul>
-                        <li><strong>'Core' Plugins</strong>: These are plugins which are automatically added to the MandoMobile a small subset which would be considered common enough to be always available, see the <a href="#">Plugins</a> section for more details.</li>
-                        <li><strong>'Optional' Plugins</strong>: These are plugins which are not included by default in the MandoMobile load stack. For your convinience the <strong>'MandoMobile-config.js'</strong> file includes all of these that you can remove or comment out as necessary, just be aware that ommitting them from the options (discussed in the <a href="#">Advanced</a> section) would eliminate the preload of that Plugin. See the <a href="#">Plugins</a> section for more details.</li>
+                        <li><strong>'Core' Plugins</strong>: These are plugins which are automatically added to the Ukitu a small subset which would be considered common enough to be always available, see the <a href="#">Plugins</a> section for more details.</li>
+                        <li><strong>'Optional' Plugins</strong>: These are plugins which are not included by default in the Ukitu load stack. For your convinience the <strong>'Ukitu-config.js'</strong> file includes all of these that you can remove or comment out as necessary, just be aware that ommitting them from the options (discussed in the <a href="#">Advanced</a> section) would eliminate the preload of that Plugin. See the <a href="#">Plugins</a> section for more details.</li>
                     </ul>
 
                     <h3>Implementing Plugins</h3>
 
-                    <p>Plugins are implemented in one of two ways depending on your configuration setup as defined by the <strong>'MandoMobile-config.js'</strong> file, the use of this file is outlined in the <a href="#">Advanced</a> section but for now we will concentrate on the default config options and specifically toggling the automatic initilisation off, what that means and how to use it.</p>
+                    <p>Plugins are implemented in one of two ways depending on your configuration setup as defined by the <strong>'Ukitu-config.js'</strong> file, the use of this file is outlined in the <a href="#">Advanced</a> section but for now we will concentrate on the default config options and specifically toggling the automatic initilisation off, what that means and how to use it.</p>
 
                     <p>Lets have a look at a simple set of radio buttons and see how to implement a stylable radio toggle switch.</p>
 
@@ -67,7 +67,7 @@
 
                     <h4>Which Means...</h4>
 
-                    <p>By simply adding the correct markup, specifically focusing on the 'data-radio-toggle' wrapper in this instance, if the <a href="#">'autoInitPlugins'</a> option in <strong>'MandoMobile-config.js'</strong> is set to true (which by default it is), the framework will attempt to build this control automatically upon page render.</p>
+                    <p>By simply adding the correct markup, specifically focusing on the 'data-radio-toggle' wrapper in this instance, if the <a href="#">'autoInitPlugins'</a> option in <strong>'Ukitu-config.js'</strong> is set to true (which by default it is), the framework will attempt to build this control automatically upon page render.</p>
                     <p>A full reference with working examples can be found in the <a href="#">Plugins</a> section which outlines each plugin and its usage, this is used a simple example.</p>
 
                     <h3>Implementing a Plugin Manually</h3>
@@ -77,12 +77,12 @@
                     <p>So with the <a href="#">'autoInitPlugins'</a> option set to <strong>false</strong>, the same markup is required but you would need to manually instantiate it in your JavaScript for this view. A simple function has been created for you to do this:</p>
 
 <pre class="js"><code>
-<span class="num">1</span><strong>mm.plugins.activatePlugin</strong>(<span class="num">2</span>'RadioToggle', <span class="num">3</span>[$('[data-radio-toggle]']), {
+<span class="num">1</span><strong>uk.plugins.activatePlugin</strong>(<span class="num">2</span>'RadioToggle', <span class="num">3</span>[$('[data-radio-toggle]']), {
     // Plugin Options
 }]);
 
 // Alternatively
-mm.plugins.activatePlugin(<span class="num">4</span>{ name: 'RadioToggle', src: <i>'/path/to/plugin.js'</i> }, [$('[data-radio-toggle]']), {
+uk.plugins.activatePlugin(<span class="num">4</span>{ name: 'RadioToggle', src: <i>'/path/to/plugin.js'</i> }, [$('[data-radio-toggle]']), {
     // Plugin Options
 }]);
 

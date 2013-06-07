@@ -25,9 +25,9 @@
 /* Overlay */
 
 [data-overlay] { -webkit-perspective: 1000; -webkit-backface-visibility: hidden; }
-.no-rgba [data-overlay] { background: url('/Images/mm/mm_ie8_blackout.png') left top repeat; }
+.no-rgba [data-overlay] { background: url('/Images/uk/uk_ie8_blackout.png') left top repeat; }
 [data-overlay-blackout] { background-color: rgba(0, 0, 0, 0.8); background-position: center center; background-repeat: no-repeat; }
-[data-overlay-blackout].loading { background-image: url('/Images/mm/mm_loading.gif'); }
+[data-overlay-blackout].loading { background-image: url('/Images/uk/uk_loading.gif'); }
 [data-overlay-content] {}
 
 /* Scrollbox */

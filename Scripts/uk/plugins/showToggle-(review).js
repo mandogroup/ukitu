@@ -5,7 +5,6 @@
     /**************************************************************
 
     Script		: ShowToggle
-    Version		: 1.1
     Authors		: Matt Robinson
 
     **************************************************************/
@@ -20,8 +19,11 @@
                 showText: 'Show',
                 zIndex: 1,
                 showHideSpeed: 0.5,
+                showHideEase: 'linear',
+                showDim: 'auto',
+                hideDim: 'auto',
                 enableHandle: true,
-                altToggleButton: null
+                altToggleButton: null,
             };
 
             return options;
@@ -35,6 +37,7 @@
             this.visible = true;
             this.grabPos = 0;
             this.showDim = 0;
+            this.hideDim = 0;
 
             this.startPos = {
                 x: 0,
@@ -55,7 +58,14 @@
 
             if (this.container.attr('data-show-direction')) this.options.direction = this.container.attr('data-show-direction');
 
-            this.showDim = ((this.options.direction == 'up') || (this.options.direction == 'down')) ? this.container.outerHeight() : this.container.outerWidth();
+            if (this.options.showDim == 'auto') {
+                this.showDim = ((this.options.direction == 'up') || (this.options.direction == 'down')) ? this.container.outerHeight() : this.container.outerWidth();
+            }
+            else {
+                this.showDim = Number(this.options.showDim);
+            }
+
+            this.hideDim = (this.options.hideDim == 'auto') ? this.hideDim : Number(this.options.hideDim);
 
             this.container.wrap('<div data-show-mask />');
             this.mask = this.container.parent('[data-show-mask]');
@@ -130,11 +140,11 @@
 
             if (this.toggleHandle) {
 
-                if (mm.utils.detect.touch()) {
+                if (Modernizr.touch) {
 
-                    this.toggleHandle.on('touchstart', this.startDrag.bind(this));
-                    this.toggleHandle.on('touchmove', this.drag.bind(this));
-                    this.toggleHandle.on('touchend', this.endDrag.bind(this));
+                    this.toggleHandle[0].addEventListener('touchstart', this.startDrag.bind(this), false);
+                    this.toggleHandle[0].addEventListener('touchmove', this.drag.bind(this), false);
+                    this.toggleHandle[0].addEventListener('touchend', this.endDrag.bind(this), false);
                 }
                 else {
 
@@ -150,22 +160,6 @@
 
                 this.options.altToggleButton.on('tap', this.toggleVisibility.bind(this));
             }
-        };
-
-        this.setTransitions = function () {
-
-            var transition = String('all ' + this.options.showHideSpeed + 's ease-out');
-
-            mm.utils.css3.setTransitions(this.port, transition);
-            mm.utils.css3.setTransitions(this.mask, transition);
-            mm.utils.css3.setTransitions(this.container, transition);
-        };
-
-        this.clearTransitions = function () {
-
-            mm.utils.css3.clearTransitions(this.port, transition);
-            mm.utils.css3.clearTransitions(this.mask, transition);
-            mm.utils.css3.clearTransitions(this.container, transition);
         };
 
         this.startDrag = function (evt) {
@@ -188,7 +182,7 @@
                     break;
                 case 'down': this.grabPos = evt.pageY - this.toggleHandle.offset().top;
                     break;
-                default: mm.utils.log('ERROR: The direction "' + this.options.direction + '" is not supported.');
+                default: uk.utils.log('ERROR: The direction "' + this.options.direction + '" is not supported.');
                     break;
             }
 
@@ -224,7 +218,6 @@
                 x: 0,
                 y: 0
             }
-
         };
 
         this.drag = function (evt) {
@@ -247,7 +240,7 @@
                         break;
                     case 'down': pos = evt.pageY - this.portContainer.offset().top - this.grabPos;
                         break;
-                    default: mm.utils.log('ERROR: The direction "' + this.options.direction + '" is not supported.');
+                    default: uk.utils.log('ERROR: The direction "' + this.options.direction + '" is not supported.');
                         break;
                 }
 
@@ -274,21 +267,25 @@
             switch (this.options.direction) {
                 case 'down':
                     this.mask.css('height', pos);
-                    this.container.css('top', (0 - containerHeight) + pos);
+                    this.applyTransform(this.container, { 'top': (0 - containerHeight) + pos });
+                    //this.container.css('top', (0 - containerHeight) + pos);
                     break;
                 case 'up':
                     this.mask.css('height', pos);
-                    this.port.css('bottom', 0);
+                    this.applyTransform(this.port, { 'bottom': 0 });
+                    //this.port.css('bottom', 0);
                     break;
                 case 'right':
                     this.mask.css('width', pos);
-                    this.container.css('left', (0 - containerWidth) + pos);
+                    this.applyTransform(this.container, { 'left': (0 - containerWidth) + pos });
+                    //this.container.css('left', (0 - containerWidth) + pos);
                     break;
                 case 'left':
-                    this.port.css('right', 0);
+                    this.applyTransform(this.port, { 'right': 0 });
+                    //this.port.css('right', 0);
                     this.mask.css('width', pos);
                     break;
-                default: mm.utils.log('ERROR: The direction "' + this.options.direction + '" is not supported.');
+                default: uk.utils.log('ERROR: The direction "' + this.options.direction + '" is not supported.');
                     break;
             }
         };
@@ -311,7 +308,7 @@
 
                 this.visible = true;
 
-                if (mm.utils.css3.detectProperty('transition')) this.setTransitions();
+                if (Modernizr.csstransitions) this.setTransitions();
 
                 if (this.options.enableHandle) this.toggleHandle.text(this.options.hideText);
 
@@ -336,7 +333,7 @@
                         containerObj.left = 0;
 						maskObj.width = this.showDim;
                         break;
-                    default: mm.utils.log('ERROR: The direction "' + this.options.direction + '" is not supported.');
+                    default: uk.utils.log('ERROR: The direction "' + this.options.direction + '" is not supported.');
                         break;
                 };
 
@@ -351,7 +348,7 @@
 
                 this.visible = false;
 
-                if (mm.utils.css3.detectProperty('transition')) this.setTransitions();
+                if (Modernizr.csstransitions) this.setTransitions();
 
                 if (this.options.enableHandle) this.toggleHandle.text(this.options.showText);
 
@@ -363,48 +360,47 @@
 
                 switch (this.options.direction) {
                     case 'down':
-                        containerObj.top = showDim;
-                        maskObj.height = 0;
+                        containerObj.top = showDim + this.hideDim;
+                        maskObj.height = this.hideDim;
                         break;
                     case 'up':
-                        portObj.bottom = 0;
-                        maskObj.height = 0;
+                        portObj.bottom = this.hideDim;
+                        maskObj.height = this.hideDim;
                         break;
                     case 'left':
-                        portObj.right = 0;
-                        maskObj.width = 1;
+                        portObj.right = this.hideDim;
+                        maskObj.width = this.hideDim;
                         break;
                     case 'right':
-                        maskObj.width = 1;
-						containerObj.left = showDim + 1;
+                        maskObj.width = this.hideDim;
+                        containerObj.left = showDim + this.hideDim;
                         break;
-                    default: mm.utils.log('ERROR: The direction "' + this.options.direction + '" is not supported.');
+                    default: uk.utils.log('ERROR: The direction "' + this.options.direction + '" is not supported.');
                         break;
                 };
 
                 this.animatePanel(containerObj, maskObj, portObj);
-
             }
         };
 
         this.animatePanel = function (containerObj, maskObj, portObj) {
 
-            if (mm.utils.css3.detectProperty('transition')) {
+            if (Modernizr.csstransitions) {
 
-                this.container.css(containerObj);
-                this.mask.css(maskObj);
-                this.port.css(portObj);
+                this.applyTransform(this.mask, maskObj);
+                this.applyTransform(this.container, containerObj);
+                this.applyTransform(this.port, portObj);
             }
             else {
-
-                if (this.getObjectLength(containerObj) > 0) {
-                    this.container.stop();
-                    this.container.animate(containerObj, this.options.showHideSpeed * 1000);
-                }
 
                 if (this.getObjectLength(maskObj) > 0) {
                     this.mask.stop();
                     this.mask.animate(maskObj, this.options.showHideSpeed * 1000);
+                }
+
+                if (this.getObjectLength(containerObj) > 0) {
+                    this.container.stop();
+                    this.container.animate(containerObj, this.options.showHideSpeed * 1000);
                 }
 
                 if (this.getObjectLength(portObj) > 0) {
@@ -412,6 +408,64 @@
                     this.port.animate(portObj, this.options.showHideSpeed * 1000);
                 }
             }
+        };
+
+        this.applyTransform = function (elem, transObj) {
+
+            if (Modernizr.csstransforms) {
+                
+                var translateX = 0;
+                var translateY = 0;
+                
+                if(transObj.left) translateX = transObj.left + 'px';
+                if(transObj.right) translateX = transObj.right + 'px';
+                if(transObj.top) translateX = transObj.top + 'px';
+                if(transObj.bottom) translateX = transObj.bottom + 'px';
+                
+                var convTransObj = this.getTransform('translate(' + translateX + ', ' + translateY + ')');
+                if (transObj.width) convTransObj.width = transObj.width;
+                if (transObj.height) convTransObj.height = transObj.height;
+
+                elem.css(convTransObj);
+            }
+            else {
+
+                elem.css(transObj);
+            }
+        };
+
+        this.getTransform = function (transform) {
+
+            var transObj = {}
+            transObj[uk.utils.css3.getTransformStyle()] = transform;
+
+            return transObj;
+        };
+
+        this.setTransitions = function () {
+
+            var transition = String('all ' + this.options.showHideSpeed + 's ' + this.options.showHideEase);
+
+            var transObj = {};
+            transObj[uk.utils.css3.getTransitionStyle()] = transition;
+
+            this.port.css(transObj);
+            this.mask.css(transObj);
+            this.container.css(transObj);
+
+            this.port[0].outerWidth;
+            this.mask[0].outerWidth;
+            this.container[0].outerWidth;
+        };
+
+        this.clearTransitions = function () {
+
+            var transObj = {};
+            transObj[uk.utils.css3.getTransitionStyle()] = 'none';
+
+            this.port.css(transObj);
+            this.mask.css(transObj);
+            this.container.css(transObj);
         };
 
         this.getObjectLength = function (obj) {

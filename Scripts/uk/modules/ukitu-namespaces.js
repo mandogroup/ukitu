@@ -1,34 +1,33 @@
-(function ($, Modernizr) {
+(function ($) {
 
     "use strict";
 
     /**************************************************************
 
-    Script		: MandoMobile - Namespaces
-    Version		: 1.2
+    Script		: Ukitu - Namespaces
     Authors		: Matt Robinson
 
     **************************************************************/
 
     /* VIEWS */
-    window.mm.views = {};
-    window.mm.views.getCurrentView = function () { return window.mm.views.viewManager.currentView; };
-    window.mm.views.changeView = function (viewId, viewUrl, viewTransition) { window.mm.views.viewManager.changeView(viewId, viewUrl, viewTransition); };
-    window.mm.views.cancelView = function () { window.mm.views.viewManager.cancelView(); };
-    window.mm.views.resizeView = function () { window.mm.views.viewManager.resizeView(); };
+    uk.views = {};
+    uk.views.getCurrentView = function () { return uk.views.viewManager.currentView; };
+    uk.views.changeView = function (viewId, viewUrl, viewTransition) { uk.views.viewManager.changeView(viewId, viewUrl, viewTransition); };
+    uk.views.cancelView = function () { uk.views.viewManager.cancelView(); };
+    uk.views.resizeView = function () { uk.views.viewManager.resizeView(); };
     
 	/* OVERLAY */
-	window.mm.overlays = {};
-	window.mm.overlays.showLoadOverlay = function (instantShow) { window.mm.overlays.viewOverlay.show(instantShow, false, true); };
-    window.mm.overlays.showAlertOverlay = function (msg, options) { window.mm.overlays.viewOverlay.showAlert(msg, options); };
-    window.mm.overlays.hideAlertOverlay = function () { window.mm.overlays.viewOverlay.hideAlert(); };    
-    window.mm.overlays.showContentOverlay = function (contentElement) { window.mm.overlays.viewOverlay.show(false, contentElement); }
-    window.mm.overlays.hideContentOverlay = function () { window.mm.overlays.viewOverlay.hideContentElement(); }
-    window.mm.overlays.hideOverlay = function () { window.mm.overlays.viewOverlay.hide(); }
+	uk.overlays = {};
+	uk.overlays.showLoadOverlay = function (instantShow) { uk.overlays.viewOverlay.show(instantShow, false, true); };
+    uk.overlays.showAlertOverlay = function (msg, options) { uk.overlays.viewOverlay.showAlert(msg, options); };
+    uk.overlays.hideAlertOverlay = function () { uk.overlays.viewOverlay.hideAlert(); };    
+    uk.overlays.showContentOverlay = function (contentElement) { uk.overlays.viewOverlay.show(false, contentElement); }
+    uk.overlays.hideContentOverlay = function () { uk.overlays.viewOverlay.hideContent(); }
+    uk.overlays.hideOverlay = function () { uk.overlays.viewOverlay.hide(); }
 	
     /* PLUGINS */
-    window.mm.plugins = {};
-    window.mm.plugins.activatePlugin = function (plugin, pluginParams) { return window.mm.plugins.pluginManager.activatePlugin(plugin, pluginParams); };
+    uk.plugins = {};
+    uk.plugins.activatePlugin = function (plugin, pluginParams) { return uk.plugins.pluginManager.activatePlugin(plugin, pluginParams); };
 
     /* EVENTS */
     var eventDispatcher = function (eventObj, id) {
@@ -51,18 +50,18 @@
         return event;
     };
 	
-    window.mm.events = {};
-    window.mm.events.viewManagerEvents = {};
-    window.mm.events.viewManagerEventMonitor = function (id) { return eventDispatcher(window.mm.events.viewManagerEvents, id) };
+    uk.events = {};
+    uk.events.viewManagerEvents = {};
+    uk.events.viewManagerEventMonitor = function (id) { return eventDispatcher(uk.events.viewManagerEvents, id) };
 	
-    window.mm.events.fireViewManagerEvent = function (eventId, args) { window.mm.events.viewManagerEventMonitor(eventId).publishWith(this, args); };
-    window.mm.events.addViewManagerEvent = function (eventId, callback) { window.mm.events.viewManagerEventMonitor(eventId).subscribe(callback); };
-    window.mm.events.removeViewManagerEvent = function (eventId, callback) { window.mm.events.viewManagerEventMonitor(eventId).unsubscribe(callback); };
+    uk.events.fireViewManagerEvent = function (eventId, args) { uk.events.viewManagerEventMonitor(eventId).publishWith(this, args); };
+    uk.events.addViewManagerEvent = function (eventId, callback) { uk.events.viewManagerEventMonitor(eventId).subscribe(callback); };
+    uk.events.removeViewManagerEvent = function (eventId, callback) { uk.events.viewManagerEventMonitor(eventId).unsubscribe(callback); };
 
-    window.mm.nav = {};
+    uk.nav = {};
 
     /* UTILS */
-    window.mm.utils = {
+    uk.utils = {
 
         indexOfPropValue: function (array, prop, value) {
             for (var i = 0; i < array.length; i += 1) {
@@ -98,8 +97,8 @@
             var regexS = "[\\?&]" + name + "=([^&#]*)";
             var regex = new RegExp(regexS);
 
-            var results = regex.exec(window.location.search);
-            if (results == null) results = regex.exec(window.location.hash);
+            var results = regex.exec(location.search);
+            if (results == null) results = regex.exec(location.hash);
 
             if (results == null) {
                 return null;
@@ -113,7 +112,7 @@
             
             getTransitionEnd: function () {
 
-                var transitionEnd = window.mm.utils.css3.getPrefix('transition');
+                var transitionEnd = uk.utils.css3.getPrefix('transition');
 
                 transitionEnd = {
                     'transition': 'transitionend',
@@ -127,7 +126,7 @@
 
             getTransformStyle: function () {
 
-                var transformStyle = window.mm.utils.css3.getPrefix('transform');
+                var transformStyle = uk.utils.css3.getPrefix('transform');
 
                 transformStyle = {
                     'transform': 'transform',
@@ -141,7 +140,7 @@
 
             getTransitionStyle: function () {
 
-                var transitionStyle = window.mm.utils.css3.getPrefix('transition');
+                var transitionStyle = uk.utils.css3.getPrefix('transition');
 
                 transitionStyle = {
                     'transition': 'transition',
@@ -156,7 +155,7 @@
             getTransform : function (transform) {
 
                 var transObj = {}
-                transObj[window.mm.utils.css3.getTransformStyle()] = transform;
+                transObj[uk.utils.css3.getTransformStyle()] = transform;
 
                 return transObj;
             },
@@ -164,7 +163,7 @@
             setTransitions : function (elem, transition) {
 
                 var transObj = {};
-                transObj[window.mm.utils.css3.getTransitionStyle()] = transition;
+                transObj[uk.utils.css3.getTransitionStyle()] = transition;
 
                 elem.css(transObj);
 
@@ -176,7 +175,7 @@
             clearTransitions : function (elem) {
 
                 var transObj = {};
-                transObj[window.mm.utils.css3.getTransitionStyle()] = 'none';
+                transObj[uk.utils.css3.getTransitionStyle()] = 'none';
 
                 elem.css(transObj);
 
@@ -220,12 +219,12 @@
 
             useTransitions: function () {
 
-                return window.mm.utils.css3.detectProperty('transition');
+                return uk.utils.css3.detectProperty('transition');
             },
 
             useTransforms: function () {
 
-                return window.mm.utils.css3.detectProperty('transform');
+                return uk.utils.css3.detectProperty('transform');
             },
 
             detectProperty: function (prop) {
@@ -244,36 +243,6 @@
                 }
 
                 return false;
-            }
-        },
-
-        convert: {
-
-            dateFromString: function (dateString) {
-                var dateArr = dateString.split("/", 3);
-                var date = new Date(dateArr[2], Number(dateArr[1]) - 1, dateArr[0]);
-
-                return date;
-            },
-
-            dateTimeToString: function (dateTime) {
-                var milliseconds = dateTime.replace(/[^\+^0-9]/g, '');
-                milliseconds = String(milliseconds).split('+', 1)[0];
-
-                var date = new Date(Number(milliseconds));
-
-                var dateString = String(date.getDate() > 9 ? date.getDate() : '0' + date.getDate()) + '/';
-                dateString += (date.getMonth() + 1) > 9 ? (date.getMonth() + 1) : '0' + String(date.getMonth() + 1);
-                dateString += '/' + String(date.getFullYear());
-
-                return dateString;
-            },
-
-            millisecondDateFromString: function (dateString) {
-                var dateArr = dateString.split("/", 3);
-                var date = String("\/Date(" + Date.UTC(dateArr[2], Number(dateArr[1]) - 1, dateArr[0]) + ")\/");
-
-                return date;
             }
         },
 
@@ -308,7 +277,7 @@
 
             iOS: function () {
 
-                var p = window.mm.utils.detect.platform();
+                var p = uk.utils.detect.platform();
 
                 if (p === 'iPad' || p === 'iPhone' || p === 'iPod') {
                     return true;
@@ -320,7 +289,7 @@
 
             touch: function () {
 
-                return ('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch;
+                return ('ontouchstart' in window) || DocumentTouch && document instanceof DocumentTouch;
             }
         },
 
@@ -344,7 +313,7 @@
 
             querystring: function () {
                 var nvpair = {};
-                var qs = window.location.search.replace('?', '');
+                var qs = location.search.replace('?', '');
                 var pairs = qs.split('&');
                 $.each(pairs, function (i, v) {
                     var pair = v.split('=');
@@ -352,44 +321,7 @@
                 });
                 return nvpair;
             }
-        },
-
-        validate: {
-
-            email: function (emailText) {
-                var validEmailRegex = new RegExp(/\b[a-zA-Z0-9._%+-]+@(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,10}\b/);
-
-                return validEmailRegex.test(emailText);
-            },
-
-            phoneNumber: function (phoneNumber) {
-                var validPhoneRegex = new RegExp(/^(01|02|07)\d{3,3}[\s-]?\d{6,6}$/);
-
-                return validPhoneRegex.test(phoneNumber);
-            },
-
-            postcode: function (postcodeText) {
-                // Loose UK Postcode - doesn't do BFPO
-                // Matches: Letter Letter/Digit(1 to 3 times) Space Digit Letter Letter
-                var validPostcodeRegex = new RegExp(/^[a-zA-Z][a-zA-Z0-9]{1,3}\s[0-9][a-zA-Z]{2,2}$/);
-
-                return validPostcodeRegex.test(postcodeText);
-            },
-
-            present: function (text) {
-
-                if (text) {
-
-                    var testText = $.trim(text);
-
-                    if ((testText == '')) return false;
-                    else return true;
-                }
-                else {
-                    return false;
-                }
-            }
         }
     };
 
-} (jQuery, Modernizr));
+} (jQuery));
